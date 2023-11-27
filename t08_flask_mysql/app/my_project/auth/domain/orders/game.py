@@ -14,6 +14,7 @@ class Game(db.Model):
     users = relationship("User", back_populates="game")
 
 
+
     def __repr__(self) -> str:
         return f"Game({self.game_id}, {self.name}, {self.release_date})"
 

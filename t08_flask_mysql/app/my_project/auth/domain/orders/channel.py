@@ -15,7 +15,7 @@ class Channel(db.Model):
     type = db.Column(db.String(45))
     server_id: int = db.Column(db.Integer, db.ForeignKey('server.server_id'))
 
-    users = db.relationship("User", secondary="user_channel_association", back_populates="channels")
+    users = db.relationship("User", secondary="users_in_channels", back_populates="channels")
 
     server = relationship("Server", back_populates="channels")
 
@@ -32,7 +32,7 @@ class Channel(db.Model):
             "owner": self.owner,
             "type": self.type,
             "server_id": self.server_id,
-            "users": [user.put_into_dto() for user in self.users]
+            "user_ids": [user.user_id for user in self.users]
         }
 
     @staticmethod

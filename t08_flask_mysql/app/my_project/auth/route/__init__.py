@@ -22,8 +22,8 @@ def register_routes(app: Flask) -> None:
     from .orders.server_route import server_bp
     from .orders.user_route import user_bp
     from .orders.role_route import role_bp
-
-
+    from .orders.user_channel_route import  user_channel_bp
+    from .orders.user_role_route import  user_role_bp
 
     app.register_blueprint(channel_bp)
     app.register_blueprint(game_bp)
@@ -31,4 +31,6 @@ def register_routes(app: Flask) -> None:
     app.register_blueprint(server_bp)
     app.register_blueprint(user_bp)
     app.register_blueprint(role_bp)
+    app.register_blueprint(user_channel_bp)
+    app.register_blueprint(user_role_bp)
 

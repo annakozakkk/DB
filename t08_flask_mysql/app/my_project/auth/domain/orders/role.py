@@ -11,7 +11,7 @@ class Role(db.Model):
     name = db.Column(db.String(45))
     description = db.Column(db.String(200))
 
-    users = db.relationship("User", secondary="user_role_association", back_populates="roles")
+    # users = db.relationship("User", secondary="user_role_association", back_populates="roles")
 
     def __repr__(self) -> str:
         return f"Role({self.role_id}, {self.name}, {self.description})"
@@ -21,7 +21,7 @@ class Role(db.Model):
             "role_id": self.role_id,
             "name": self.name,
             "description": self.description,
-            "users": [user.put_into_dto() for user in self.users],
+            # "users": [user.put_into_dto() for user in self.users],
 
 
         }

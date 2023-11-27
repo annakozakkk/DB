@@ -11,5 +11,3 @@ class ChannelService(GeneralService):
     """
     _dao = channel_dao
 
-    def find_all(self) -> List[object]:
-        return self._dao.find_all()

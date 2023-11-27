@@ -135,3 +135,36 @@ class RoleDto(IDto):
     def create_from_dto(dto_dict: Dict[str, object]) -> 'RoleDto':
         return RoleDto(**dto_dict)
 
+
+@dataclass
+class UserInChannelDto(IDto):
+    """
+    Data Transfer Object for UserInChannel.
+    """
+    id: int
+    user_id: int
+    channel_id: int
+
+    def put_into_dto(self) -> Dict[str, object]:
+        return self.__dict__
+
+    @staticmethod
+    def create_from_dto(dto_dict: Dict[str, object]) -> 'UserInChannelDto':
+        return UserInChannelDto(**dto_dict)
+
+@dataclass
+class UserHasRoleDto(IDto):
+    """
+    Data Transfer Object for UserInChannel.
+    """
+    id: int
+    user_id: int
+    role_id: int
+
+    def put_into_dto(self) -> Dict[str, object]:
+        return self.__dict__
+
+    @staticmethod
+    def create_from_dto(dto_dict: Dict[str, object]) -> 'UserHasRoleDto':
+        return UserHasRoleDto(**dto_dict)
+

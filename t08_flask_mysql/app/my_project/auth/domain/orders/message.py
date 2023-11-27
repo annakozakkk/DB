@@ -9,13 +9,12 @@ from t08_flask_mysql.app.my_project import db
 class Message(db.Model):
     __tablename__ = 'message'
     message_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
+    user_id :int = db.Column(db.Integer, db.ForeignKey('user.user_id'))
     message_text = db.Column(db.String(300))
     url = db.Column(db.String(200))
     timestamp = db.Column(db.DateTime)
 
-
-    users = relationship("User", back_populates="messages")
+    user = relationship("User", back_populates="messages")
 
 
 
@@ -25,10 +24,12 @@ class Message(db.Model):
     def put_into_dto(self) -> Dict[str, Any]:
         return {
             "message_id": self.message_id,
-            "user_id": self.user_id,
             "message_text": self.message_text,
             "url": self.url,
             "timestamp": self.timestamp,
+            "user_id": self.user_id
+
+
         }
 
     @staticmethod
