@@ -8,3 +8,5 @@ class MessageController(GeneralController):
     Realisation of Message controller.
     """
     _service = message_service
+    def get_statistics(self, Option):
+        return message_service.get_procedure(Option)

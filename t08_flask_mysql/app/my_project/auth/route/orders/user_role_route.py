@@ -17,17 +17,17 @@ def get_all_users() -> Response:
     return make_response(jsonify(user_role_controller.find_all()), HTTPStatus.OK)
 
 
-@user_role_bp.post('')
-def create_user() -> Response:
-    """
-       Gets all objects from table using Service layer.
-       :return: Response object
-    """
-
-    content = request.get_json()
-    user_role = UserHasRole.create_from_dto(content)
-    user_role_controller.create(user_role)
-    return make_response(jsonify(user_role.put_into_dto()), HTTPStatus.CREATED)
+# @user_role_bp.post('')
+# def create_user() -> Response:
+#     """
+#        Gets all objects from table using Service layer.
+#        :return: Response object
+#     """
+#
+#     content = request.get_json()
+#     user_role = UserHasRole.create_from_dto(content)
+#     user_role_controller.create(user_role)
+#     return make_response(jsonify(user_role.put_into_dto()), HTTPStatus.CREATED)
 
 
 @user_role_bp.get('/<int:id>')

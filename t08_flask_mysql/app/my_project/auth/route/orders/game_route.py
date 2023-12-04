@@ -29,6 +29,16 @@ def create_game() -> Response:
     game_controller.create(game)
     return make_response(jsonify(game.put_into_dto()), HTTPStatus.CREATED)
 
+@game_bp.post('/calculate_statistic')
+def create_statistic():
+    data = request.get_json()
+    table_name = data.get('table_name')
+    column_name = data.get('column_name')
+    operation_name = data.get('operation_name')
+
+    result = game_controller.calculate_statistic(table_name, column_name, operation_name)
+
+    return make_response(jsonify({"message": "Calculation successful", "result": result}), HTTPStatus.OK)
 
 @game_bp.get('/<int:game_id>')
 def get_game(game_id: int) -> Response:

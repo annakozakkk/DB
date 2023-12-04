@@ -13,12 +13,11 @@ class Channel(db.Model):
     creation_date = db.Column(db.Date)
     owner = db.Column(db.String(45))
     type = db.Column(db.String(45))
-    server_id: int = db.Column(db.Integer, db.ForeignKey('server.server_id'))
+    server_id: int = db.Column(db.Integer, db.ForeignKey('server.server_id') )
 
     users = db.relationship("User", secondary="users_in_channels", back_populates="channels")
 
     server = relationship("Server", back_populates="channels")
-
 
     def __repr__(self) -> str:
         return (f"Channel({self.channel_id}, {self.name}, {self.creation_date},"
@@ -32,7 +31,20 @@ class Channel(db.Model):
             "owner": self.owner,
             "type": self.type,
             "server_id": self.server_id,
-            "user_ids": [user.user_id for user in self.users]
+            "users": [{"user_id": user.user_id,
+                       "email": user.email,
+                       "username": user.username,
+                       "about_user": user.about_user,
+                       "in_discord": user.in_discord,
+                       "game_id": user.game_id,
+                       # "messages": [message.put_into_dto() for message in user.messages],
+                       # "roles": [{
+                       #     "role_id": role.role_id,
+                       #     "name": role.name,
+                       #     "description": role.description,
+                       # } for role in user.roles]
+
+                       } for user in self.users]
         }
 
     @staticmethod

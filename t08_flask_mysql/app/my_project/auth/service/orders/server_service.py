@@ -8,3 +8,8 @@ class ServerService(GeneralService):
     Realisation of Server service.
     """
     _dao = server_dao
+
+    def insert_server_data(self, server_id:int, name:str, creation_date:str):
+        self._dao.insert_server_data(server_id, name, creation_date)
+
+

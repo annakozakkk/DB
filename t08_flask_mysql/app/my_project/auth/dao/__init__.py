@@ -7,7 +7,7 @@ from .orders.server_dao import ServerDAO
 from .orders.message_dao import MessageDAO
 from .orders.role_dao import RoleDAO
 from .orders.user_channel_dao import UserInChannelDAO
-from .orders.user_role_dao import UserHasRole
+from .orders.user_role_dao import UserHasRoleDAO
 
 game_dao = GameDAO()
 channel_dao = ChannelDAO()
@@ -16,4 +16,4 @@ server_dao = ServerDAO()
 message_dao = MessageDAO()
 role_dao = RoleDAO()
 user_channel_dao = UserInChannelDAO()
-user_has_role = UserHasRole()
+user_has_role = UserHasRoleDAO()

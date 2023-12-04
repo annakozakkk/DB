@@ -8,3 +8,7 @@ class UserService(GeneralService):
     Realisation of User service.
     """
     _dao = user_dao
+
+    def insert_rows(self):
+        self._dao.insert_rows()
+

@@ -11,6 +11,7 @@ class Game(db.Model):
     game_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(45))
     release_date = db.Column(db.Date)
+    price = db.Column(db.Integer)
     users = relationship("User", back_populates="game")
 
 
@@ -23,6 +24,7 @@ class Game(db.Model):
             "game_id": self.game_id,
             "name": self.name,
             "release_date": self.release_date,
+            "price":self.price,
             "users": [user.put_into_dto() for user in self.users]
 
         }
@@ -32,6 +34,7 @@ class Game(db.Model):
         obj = Game(
             game_id=dto_dict.get("gameId"),
             name=dto_dict.get("name"),
-            release_date=dto_dict.get("release_date")
+            release_date=dto_dict.get("release_date"),
+            price = dto_dict.get("price")
         )
         return obj

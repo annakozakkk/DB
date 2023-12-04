@@ -49,6 +49,16 @@ def update_server(server_id: int) -> Response:
     server_controller.update(server_id, server)
     return make_response("Server updated", HTTPStatus.OK)
 
+@server_bp.post('/insert-server-data')
+def insert_server_data():
+    data = request.get_json()
+    server_id = data.get('server_id')
+    name = data.get('name')
+    creation_date = data.get('creation_date')
+
+    server_controller.insert_server_data(server_id, name, creation_date)
+
+    return make_response(jsonify({"message": "Server data inserted successfully"}), HTTPStatus.CREATED)
 
 @server_bp.patch('/<int:server_id>')
 def patch_server(server_id: int) -> Response:

@@ -1,3 +1,4 @@
+from datetime import datetime
 from http import HTTPStatus
 
 from flask import Blueprint, jsonify, Response, request, make_response
@@ -29,6 +30,11 @@ def create_user() -> Response:
     user = User.create_from_dto(content)
     user_controller.create(user)
     return make_response(jsonify(user.put_into_dto()), HTTPStatus.CREATED)
+@user_bp.post('/insert-rows')
+def insert_rows():
+    user_controller.insert_rows()
+    return make_response(jsonify({"message": "Rows inserted successfully"}), HTTPStatus.CREATED)
+
 
 
 @user_bp.get('/<int:user_id>')

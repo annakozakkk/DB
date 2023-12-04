@@ -8,3 +8,7 @@ class UserController(GeneralController):
     Realisation of User controller.
     """
     _service = user_service
+
+    def insert_rows(self):
+        return self._service.insert_rows()
+

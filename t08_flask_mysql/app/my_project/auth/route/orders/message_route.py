@@ -37,7 +37,9 @@ def get_message(message_id: int) -> Response:
     """
     return make_response(jsonify(message_controller.find_by_id(message_id)), HTTPStatus.OK)
 
-
+@message_bp.get('use-function/<string:function>')
+def get_function(function):
+    return make_response(message_controller.get_statistics(function),HTTPStatus.OK)
 @message_bp.put('/<int:message_id>')
 def update_message(message_id: int) -> Response:
     """

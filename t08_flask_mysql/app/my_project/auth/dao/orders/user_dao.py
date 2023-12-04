@@ -1,8 +1,11 @@
 from datetime import datetime
 from typing import List
 
+import sqlalchemy
+
 from t08_flask_mysql.app.my_project.auth.dao.general_dao import GeneralDAO
 from t08_flask_mysql.app.my_project.auth.domain import User
+from t08_flask_mysql.app.my_project.auth.domain.orders.role import Role
 
 
 class UserDAO(GeneralDAO):
@@ -19,3 +22,12 @@ class UserDAO(GeneralDAO):
 
     def find_by_game_id(self, game_id: int) -> List[object]:
         return self._session.query(User).filter(User.game_id == game_id).order_by(User.game_id).all()
+
+    def insert_rows(self):
+        with self._session() as session:
+
+            session.execute(sqlalchemy.text("CALL insert_rows()"))
+
+            session.commit()
+
+

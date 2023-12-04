@@ -11,7 +11,6 @@ class Message(db.Model):
     message_id = db.Column(db.Integer, primary_key=True)
     user_id :int = db.Column(db.Integer, db.ForeignKey('user.user_id'))
     message_text = db.Column(db.String(300))
-    url = db.Column(db.String(200))
     timestamp = db.Column(db.DateTime)
 
     user = relationship("User", back_populates="messages")
@@ -19,13 +18,12 @@ class Message(db.Model):
 
 
     def __repr__(self) -> str:
-        return f"Message({self.message_id}, {self.user_id}, {self.message_text}, {self.url}, {self.timestamp})"
+        return f"Message({self.message_id}, {self.user_id}, {self.message_text}, {self.timestamp})"
 
     def put_into_dto(self) -> Dict[str, Any]:
         return {
             "message_id": self.message_id,
             "message_text": self.message_text,
-            "url": self.url,
             "timestamp": self.timestamp,
             "user_id": self.user_id
 
@@ -38,7 +36,6 @@ class Message(db.Model):
             message_id = dto_dict.get("message_id"),
             user_id = dto_dict.get("user_id"),
             message_text=dto_dict.get("message_text"),
-            url=dto_dict.get("url"),
             timestamp=dto_dict.get("timestamp")
 
         )
